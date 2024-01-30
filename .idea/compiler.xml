@@ -8,15 +8,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
-        <module name="base-microservice-mongo (1)" />
-        <module name="gateway" />
+        <module name="followers-microservice" />
         <module name="discovery" />
         <module name="posts-microservice" />
-        <module name="base-microservice-mongo (2)" />
+        <module name="search-microservice" />
+        <module name="gateway" />
+        <module name="base-microservice-mongo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="base-microservice-mongo" target="17" />
+      <module name="base-microservice-mongo (1)" target="17" />
+      <module name="base-microservice-mongo (2)" target="17" />
+      <module name="base-microservice-mongo (3)" target="17" />
       <module name="base-microservice-postgresql" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -25,11 +28,14 @@
       <module name="base-microservice-mongo" options="-parameters" />
       <module name="base-microservice-mongo (1)" options="-parameters" />
       <module name="base-microservice-mongo (2)" options="-parameters" />
+      <module name="base-microservice-mongo (3)" options="-parameters" />
       <module name="base-microservice-postgresql" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="discovery" options="-parameters" />
+      <module name="followers-microservice" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="posts-microservice" options="-parameters" />
+      <module name="search-microservice" options="-parameters" />
     </option>
   </component>
 </project>
