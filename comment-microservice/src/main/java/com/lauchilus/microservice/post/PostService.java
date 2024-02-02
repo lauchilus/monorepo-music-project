@@ -17,6 +17,7 @@ public class PostService {
                 .comments(new ArrayList<>())
                 .build();
 
+
         postRepository.insert(post);
         return post;
     }

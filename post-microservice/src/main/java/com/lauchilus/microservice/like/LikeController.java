@@ -21,8 +21,8 @@ public class LikeController {
         return new ResponseEntity<String>("like added", HttpStatus.CREATED);
     }
 
-    @GetMapping("/{postId}")
-    public ResponseEntity<List<String>> getLikesFromPost(@PathVariable String postId){
+    @GetMapping()
+    public ResponseEntity<List<String>> getLikesFromPost(@RequestParam String postId){
         return new ResponseEntity<List<String>>(service.getAllLikesFromPost(postId), HttpStatus.CREATED);
     }
 

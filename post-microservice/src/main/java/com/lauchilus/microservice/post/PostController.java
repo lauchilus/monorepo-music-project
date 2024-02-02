@@ -1,5 +1,6 @@
 package com.lauchilus.microservice.post;
 
+import com.lauchilus.microservice.kafka.producer.PayloadPostTopic;
 import com.lauchilus.microservice.post.dto.CreateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,7 @@ public class PostController {
 
     @DeleteMapping("/{postId}")
     public ResponseEntity<String> deletePost(@PathVariable String postId){
+
         service.deletePost(postId);
         return new ResponseEntity<String>("Post Deleted",HttpStatus.OK);
     }
