@@ -37,6 +37,7 @@ public class PostService {
 
     public Post getPost(String postId){
         Post post = postRepository.getReferenceById(postId);
+
         return post ;
     }
 
@@ -45,6 +46,7 @@ public class PostService {
     }
 
     public void deletePost(String postId){
+        producer.sendMessageDeleteComments(postId);
         postRepository.deleteById(postId);
     }
 }

@@ -20,4 +20,10 @@ public class PostProducer {
                 .build();
         kafkaTemplate.send(payload);
     }
+
+    public void sendMessageDeleteComments(String postId){
+        Message<String> payload = MessageBuilder.withPayload(postId).setHeader(KafkaHeaders.TOPIC,"delete-comments")
+                .build();
+        kafkaTemplate.send(payload);
+    }
 }
