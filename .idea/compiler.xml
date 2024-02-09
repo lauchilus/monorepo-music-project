@@ -35,7 +35,7 @@
       <module name="discovery" options="-parameters" />
       <module name="followers-microservice" options="-parameters" />
       <module name="gateway" options="-parameters" />
-      <module name="notifications" options="-parameters" />
+      <module name="notifications" options="" />
       <module name="posts-microservice" options="-parameters" />
       <module name="search-microservice" options="-parameters" />
     </option>
