@@ -21,6 +21,7 @@
       <module name="base-microservice-mongo (2)" target="17" />
       <module name="base-microservice-mongo (3)" target="17" />
       <module name="base-microservice-postgresql" target="17" />
+      <module name="notifications" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
