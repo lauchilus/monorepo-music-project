@@ -2,6 +2,7 @@ package com.lauchilus.microservice.comments;
 
 import com.lauchilus.microservice.comments.dto.AddCommentDto;
 import com.lauchilus.microservice.comments.dto.ResponseComments;
+import com.lauchilus.microservice.kafka.Producer;
 import com.lauchilus.microservice.post.Post;
 import com.lauchilus.microservice.post.PostRepository;
 import jakarta.ws.rs.NotFoundException;
@@ -19,6 +20,7 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
+    private final Producer producer;
 
     public Comment addComment(AddCommentDto commentDto){
         Post post = postRepository.findByPostId(commentDto.postId());
@@ -29,6 +31,7 @@ public class CommentService {
                 .text(commentDto.text())
                 .build();
         commentRepository.insert(comment);
+        producer.SendNotificationLike(post.getUserId(),"New comment", "You have a new comment in your post", comment.getUserId());
         return comment;
     }
 

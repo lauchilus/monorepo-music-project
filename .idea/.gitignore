@@ -2,3 +2,5 @@
 /shelf/
 /workspace.xml
 *.yml
+/config-server/src/main/resources/
+firebase-service-account.json

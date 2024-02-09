@@ -1,5 +1,6 @@
 package com.lauchilus.microservice.like;
 
+import com.lauchilus.microservice.kafka.producer.PostProducer;
 import com.lauchilus.microservice.post.Post;
 import com.lauchilus.microservice.post.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ public class LikeService {
 
     public final LikeRepository repository;
     public final PostRepository postRepository;
+    public final PostProducer producer;
 
     public List<String> getAllLikesFromPost(String postId){
         return repository.findAllByPostId(postId)
@@ -35,6 +37,7 @@ public class LikeService {
                 .userId(userId)
                 .post(post)
                 .build();
+        producer.SendNotificationLike(post.getUserId(),"New Like", "You recieved a like", userId);
         repository.save(like);
     }
 

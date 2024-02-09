@@ -1,4 +1,4 @@
-package com.lauchilus.microservice.kafka.producer;
+package com.lauchilus.microservice.followers.kafka;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -9,24 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class PostProducer {
+public class Producer {
 
-    private final KafkaTemplate<String,PayloadPostTopic> kafkaTemplate;
     private final KafkaTemplate<String,NotificationMessage> kafkaTemplateNotification;
-
-    public void sendMessage(PayloadPostTopic msg){
-        Message<PayloadPostTopic> payload = MessageBuilder
-                .withPayload(msg)
-                .setHeader(KafkaHeaders.TOPIC,"post-creation")
-                .build();
-        kafkaTemplate.send(payload);
-    }
-
-    public void sendMessageDeleteComments(String postId){
-        Message<String> payload = MessageBuilder.withPayload(postId).setHeader(KafkaHeaders.TOPIC,"delete-comments")
-                .build();
-        kafkaTemplate.send(payload);
-    }
 
     public void SendNotificationLike(String recipientId,String title, String body, String username){
         NotificationMessage notificationMessage = NotificationMessage.builder()
@@ -37,10 +22,9 @@ public class PostProducer {
                 .build();
 
         Message<NotificationMessage> message = MessageBuilder.withPayload(notificationMessage)
-                .setHeader(KafkaHeaders.TOPIC,"like-notification")
+                .setHeader(KafkaHeaders.TOPIC,"follow-notification")
                 .build();
         kafkaTemplateNotification.send(message);
     }
-
 
 }

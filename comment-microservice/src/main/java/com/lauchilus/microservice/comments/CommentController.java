@@ -36,8 +36,4 @@ public class CommentController {
         return new ResponseEntity<String>("Comment Deleted",HttpStatus.OK);
     }
 
-    @PostMapping("/addPost")
-    public ResponseEntity<Post> dasdad(){
-    return new ResponseEntity<>(postService.createPost("260add0e-2880-42df-9813-15175e5c1d93","userTest1223jgh"),HttpStatus.OK);
-    }
 }
