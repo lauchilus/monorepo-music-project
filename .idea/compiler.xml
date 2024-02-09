@@ -14,6 +14,7 @@
         <module name="search-microservice" />
         <module name="gateway" />
         <module name="base-microservice-mongo" />
+        <module name="notifications" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -34,6 +35,7 @@
       <module name="discovery" options="-parameters" />
       <module name="followers-microservice" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="notifications" options="-parameters" />
       <module name="posts-microservice" options="-parameters" />
       <module name="search-microservice" options="-parameters" />
     </option>
