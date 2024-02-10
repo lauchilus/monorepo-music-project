@@ -15,6 +15,7 @@ public class Consumer {
     @KafkaListener(topics = "follow-notification", groupId = "myGroup")
     public void consumeFollowMsg(NotificationMessage msg){
         //TODO create notification and use FirebaseMessagingService
+        //TODO TEST
         log.info(String.format("Consuming the message from follow-notification topic postID: %s:", null));
     }
 
