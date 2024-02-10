@@ -31,7 +31,7 @@ public class CommentService {
                 .text(commentDto.text())
                 .build();
         commentRepository.insert(comment);
-        producer.SendNotificationLike(post.getUserId(),"New comment", "You have a new comment in your post", comment.getUserId());
+        producer.SendNotificationComment(post.getUserId(),"New comment", "You have a new comment in your post", comment.getUserId(),"comment");
         return comment;
     }
 

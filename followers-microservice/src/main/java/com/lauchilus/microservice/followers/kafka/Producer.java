@@ -13,12 +13,13 @@ public class Producer {
 
     private final KafkaTemplate<String,NotificationMessage> kafkaTemplateNotification;
 
-    public void SendNotificationLike(String recipientId,String title, String body, String username){
+    public void SendNotificationLike(String recipientId,String title, String body, String username,String type){
         NotificationMessage notificationMessage = NotificationMessage.builder()
                 .body(body)
                 .recipientToken(recipientId)
                 .title(title)
                 .username(username)
+                .type(type)
                 .build();
 
         Message<NotificationMessage> message = MessageBuilder.withPayload(notificationMessage)

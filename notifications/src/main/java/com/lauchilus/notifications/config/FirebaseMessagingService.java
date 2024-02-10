@@ -18,13 +18,12 @@ public class FirebaseMessagingService {
         Notification notification = Notification.builder()
                 .setTitle(notificationMessage.getTitle())
                 .setBody(notificationMessage.getBody())
-                .setImage(notificationMessage.getUsername())
+                .setImage("https://media.discordapp.net/attachments/611022942004051986/852654700926206022/FaceApp_1623357540197.jpg?ex=65d7b712&is=65c54212&hm=92e1c7d9f13d3f41f8986e0e8a050f97280dc7e74a342abbd8bb1ecbfb55768a&=&format=webp&width=266&height=473")
                 .build();
 
         Message message = Message.builder()
                 .setToken(notificationMessage.getRecipientToken())
                 .setNotification(notification)
-                .putAllData(notificationMessage.getData())
                 .build();
 
         try {

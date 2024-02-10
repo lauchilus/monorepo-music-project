@@ -16,6 +16,7 @@ public class NotificationMessage {
     private String title;
     private String body;
     private String username;
+    private String type;
     private Map<String, String> data;
 
 }

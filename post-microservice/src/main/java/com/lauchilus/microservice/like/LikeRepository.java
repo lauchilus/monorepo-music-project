@@ -12,4 +12,6 @@ public interface LikeRepository extends JpaRepository<Like, String> {
     Like getReferenceByPostIdAndUserId(String postId, String userId);
 
     boolean existsByPostIdAndUserId(String postId, String userId);
+
+    boolean existsByPostId(String postId);
 }

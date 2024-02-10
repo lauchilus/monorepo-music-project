@@ -7,6 +7,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 
 import java.io.IOException;
 
@@ -24,5 +25,11 @@ public class FirebaseConfig {
         FirebaseApp app = FirebaseApp.initializeApp(firebaseOptions, "hearu-a4fac");
         return FirebaseMessaging.getInstance(app);
     }
+
+    @Bean
+    public StringJsonMessageConverter jsonConverter() {
+        return new StringJsonMessageConverter();
+    }
+
 
 }

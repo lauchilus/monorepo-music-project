@@ -19,7 +19,7 @@ public class FollowerService {
                 .followee(followee)
                 .build());
 
-        producer.SendNotificationLike(followee,"New Follower","You have a new follower", follower);
+        producer.SendNotificationLike(followee,"New Follower","You have a new follower", follower,"follow");
     }
 
     public void unfollow(String unfollower, String unfollowee) {

@@ -26,19 +26,23 @@ public class LikeService {
     }
 
     public void addLike(String postId,String userId){
-        if(repository.existsByPostIdAndUserId(postId,userId)){
+        if(repository.existsByPostId(postId)){
+            Post post = postRepository.getReferenceById(postId);
+            post.addLike();
+
+            postRepository.save(post);
+            Like like = Like.builder()
+                    .userId(userId)
+                    .post(post)
+                    .build();
+            System.out.println(post.getUserId());
+            producer.SendNotificationLike(post.getUserId(),"New Like", "You recieved a like", userId,"like");
+            repository.save(like);
+        }else{
             throw new RuntimeException();
         }
-        Post post = postRepository.getReferenceById(postId);
-        post.addLike();
 
-        postRepository.save(post);
-        Like like = Like.builder()
-                .userId(userId)
-                .post(post)
-                .build();
-        producer.SendNotificationLike(post.getUserId(),"New Like", "You recieved a like", userId);
-        repository.save(like);
+
     }
 
     public void deleteLike(String postId,String userId){
