@@ -3,4 +3,5 @@
 /workspace.xml
 *.yml
 /config-server/src/main/resources/
+/notifications/src/main/resources/firebase-service-account.json
 firebase-service-account.json

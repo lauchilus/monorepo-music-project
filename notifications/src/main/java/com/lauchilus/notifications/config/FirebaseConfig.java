@@ -21,7 +21,7 @@ public class FirebaseConfig {
         FirebaseOptions firebaseOptions = FirebaseOptions.builder()
                 .setCredentials(googleCredentials)
                 .build();
-        FirebaseApp app = FirebaseApp.initializeApp(firebaseOptions,"hearU");
+        FirebaseApp app = FirebaseApp.initializeApp(firebaseOptions, "hearu-a4fac");
         return FirebaseMessaging.getInstance(app);
     }
 
