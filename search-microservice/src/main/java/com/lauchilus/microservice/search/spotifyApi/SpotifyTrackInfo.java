@@ -5,6 +5,7 @@ public record SpotifyTrackInfo(
         String id,
         String externalUrl,
         String previewUrl,
-        String imageUrl
+        String imageUrl,
+        String artist
 ) {
 }

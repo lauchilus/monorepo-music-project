@@ -20,7 +20,7 @@ public class SearchController {
     private final SpotifyService spotifyService;
 
     @GetMapping
-    public ResponseEntity<List<SpotifyTrackInfo>> getTracks(@RequestParam String q) throws IOException, ParseException, SpotifyWebApiException {
-        return new ResponseEntity<>(spotifyService.getTrack(q), HttpStatus.OK);
+    public ResponseEntity<List<SpotifyTrackInfo>> getTracks(@RequestParam String q,@RequestParam(required = false,defaultValue = "5") String limit,@RequestParam(required = false,defaultValue = "0") String offset) throws IOException, ParseException, SpotifyWebApiException {
+        return new ResponseEntity<>(spotifyService.getTrack(q,limit,offset), HttpStatus.OK);
     }
 }

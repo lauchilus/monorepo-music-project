@@ -29,11 +29,15 @@ public class SpotifyApiResponseParser {
                 String id = trackNode.path("id").asText();
                 String externalUrl = trackNode.path("external_urls").path("spotify").asText();
                 String previewUrl = trackNode.path("preview_url").asText();
+                //String artist = trackNode.path("artist").asText();
+
+                JsonNode jsonNodeArtist = trackNode.path("artists");
+                String artist = jsonNodeArtist.isArray() && !jsonNodeArtist.isEmpty() ? jsonNodeArtist.get(0).path("name").asText() : "";
 
                 // Obtener la URL de la imagen del artista desde el nodo del álbum
                 String imageUrl = getArtistImageUrl(trackNode);
 
-                SpotifyTrackInfo trackInfo = new SpotifyTrackInfo(name, id, externalUrl, previewUrl, imageUrl);
+                SpotifyTrackInfo trackInfo = new SpotifyTrackInfo(name, id, externalUrl, previewUrl, imageUrl,artist);
                 trackInfoList.add(trackInfo);
             }
 
@@ -59,6 +63,8 @@ public class SpotifyApiResponseParser {
         JsonNode fieldNode = node.path(fieldName);
         return fieldNode.isMissingNode() ? null : fieldNode.asText();
     }
+
+
 
     private static String getImageUrl(JsonNode node, int width, int height) {
         JsonNode imagesNode = node.path("images");

@@ -28,8 +28,8 @@ public class SpotifyService {
     private final RestTemplate restTemplate;
     private String type = ModelObjectType.ARTIST.getType();
 
-    public List<SpotifyTrackInfo> getTrack(String query) throws IOException, ParseException, SpotifyWebApiException {
-        String q = String.format("https://api.spotify.com/v1/search?q=%s&type=track,artist",query);
+    public List<SpotifyTrackInfo> getTrack(String query,String limit,String offset) throws IOException, ParseException, SpotifyWebApiException {
+        String q = String.format("https://api.spotify.com/v1/search?q=%s&type=track,artist&limit=%s&offset=%s",query,limit,offset);
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + spotifyApi.getAccessToken());
 
