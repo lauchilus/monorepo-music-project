@@ -22,7 +22,7 @@ public class CommentService {
     private final PostRepository postRepository;
     private final Producer producer;
 
-    public Comment addComment(AddCommentDto commentDto){
+    public ResponseComments addComment(AddCommentDto commentDto){
         Post post = postRepository.findByPostId(commentDto.postId());
         if(postRepository.existsByPostId(post.getId())) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         Comment comment = Comment.builder()
@@ -32,7 +32,7 @@ public class CommentService {
                 .build();
         commentRepository.insert(comment);
         producer.SendNotificationComment(post.getUserId(),"New comment", "You have a new comment in your post", comment.getUserId(),"comment");
-        return comment;
+        return new ResponseComments(comment.getId(),comment.getPost().getId(),comment.getText(), comment.getUserId());
     }
 
     public List<ResponseComments> getAllPostComments(String postId){
