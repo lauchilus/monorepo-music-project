@@ -9,13 +9,14 @@ import java.util.List;
 public interface FollowerRepository extends MongoRepository<Follower,String> {
 
 
-    List<Follower> findAllByFollower(String follower);
+    List<Follower> findAllByFollower(String follower, Integer limit, Integer offset);
 
     Long countByFollower(String follower);
 
-    List<Follower> findAllByFollowee(String followee);
+    List<Follower> findAllByFollowee(String followee, Integer limit, Integer offset);
 
     Long countByFollowee(String followee);
 
     void deleteByFollowerAndFollowee(String unfollower, String unfollowee);
+
 }

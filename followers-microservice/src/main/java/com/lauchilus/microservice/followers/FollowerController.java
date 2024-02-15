@@ -28,13 +28,13 @@ public class FollowerController {
     }
 
     @GetMapping("/follows/{follower}")
-    public ResponseEntity<List<Follower>> userFollows(@PathVariable String follower){
-        return new ResponseEntity<List<Follower>>(service.userFollows(follower),HttpStatus.OK);
+    public ResponseEntity<List<Follower>> userFollows(@PathVariable String follower,@RequestParam(required = false, defaultValue = "0")Integer limit,@RequestParam(required = false, defaultValue = "0")Integer offset){
+        return new ResponseEntity<List<Follower>>(service.userFollows(follower,limit,offset),HttpStatus.OK);
     }
 
     @GetMapping("/followees/{followee}")
-    public ResponseEntity<List<Follower>> userFollowes(@PathVariable String followee){
-        return new ResponseEntity<List<Follower>>(service.userFollowee(followee),HttpStatus.OK);
+    public ResponseEntity<List<Follower>> userFollowes(@PathVariable String followee,@RequestParam(required = false, defaultValue = "0")Integer limit,@RequestParam(required = false, defaultValue = "0")Integer offset){
+        return new ResponseEntity<List<Follower>>(service.userFollowee(followee,limit,offset),HttpStatus.OK);
     }
 
     @GetMapping("/follows/count")

@@ -77,11 +77,11 @@ class FollowerServiceTest {
         mockFollowers.add(Follower.builder().follower("follower1").followee("folowee1").build());
         mockFollowers.add(Follower.builder().follower("follower2").followee("folowee2").build());
 
-        when(repository.findAllByFollower(eq(follower))).thenReturn(mockFollowers);
+        when(repository.findAllByFollower(eq(follower), 0, 0)).thenReturn(mockFollowers);
 
-        List<Follower> result = followerService.userFollows(follower);
+        List<Follower> result = followerService.userFollows(follower,0,0);
 
-         verify(repository, times(1)).findAllByFollower(eq(follower));
+         verify(repository, times(1)).findAllByFollower(eq(follower),0,0);
 
         assertEquals(2, result.size());
     }
@@ -96,11 +96,11 @@ class FollowerServiceTest {
         mockFollowers.add(Follower.builder().follower("follower1").followee(followee).build());
         mockFollowers.add(Follower.builder().follower("follower2").followee(followee).build());
 
-        when(repository.findAllByFollowee(eq(followee))).thenReturn(mockFollowers);
+        when(repository.findAllByFollowee(eq(followee),0,0)).thenReturn(mockFollowers);
 
-        List<Follower> result = followerService.userFollowee(followee);
+        List<Follower> result = followerService.userFollowee(followee,0,0);
 
-        verify(repository, times(1)).findAllByFollowee(eq(followee));
+        verify(repository, times(1)).findAllByFollowee(eq(followee),0,0);
 
         assertEquals(2, result.size());
     }

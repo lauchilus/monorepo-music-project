@@ -26,12 +26,12 @@ public class FollowerService {
         repository.deleteByFollowerAndFollowee(unfollower, unfollowee);
     }
 
-    public List<Follower> userFollows(String follower) {
-        return repository.findAllByFollower(follower);
+    public List<Follower> userFollows(String follower,Integer limit, Integer offset) {
+        return repository.findAllByFollower(follower,limit,offset);
     }
 
-    public List<Follower> userFollowee(String followee) {
-        return repository.findAllByFollowee(followee);
+    public List<Follower> userFollowee(String followee,Integer limit,Integer offset) {
+        return repository.findAllByFollowee(followee,limit,offset);
     }
 
     public Long followsCount(String follower) {
