@@ -3,6 +3,7 @@ package com.lauchilus.microservice.post;
 import com.lauchilus.microservice.kafka.producer.PayloadPostTopic;
 import com.lauchilus.microservice.kafka.producer.PostProducer;
 import com.lauchilus.microservice.post.dto.CreateDto;
+import com.lauchilus.microservice.post.dto.GetPostDto;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +37,7 @@ class PostServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        postService = new PostService(postRepository,postProducer);
+        postService = new PostService(postRepository,postProducer,null);
     }
 
     @Test
@@ -66,7 +67,7 @@ class PostServiceTest {
     void getPost__shouldReturnPost() {
         Post post = getPostMock();
         when(postRepository.getReferenceById(any(String.class))).thenReturn(post);
-        Post response = postService.getPost("id");
+        GetPostDto response = postService.getPost("id");
 
         verify(postRepository,times(1)).getReferenceById(any(String.class));
 
@@ -85,7 +86,7 @@ class PostServiceTest {
 
         when(postRepository.findAllByUserId(any(String.class))).thenReturn(listPosts);
 
-        List<Post> response = postService.getAllPostFromUser("idtest");
+        List<GetPostDto> response = postService.getAllPostFromUser("idtest");
 
         verify(postRepository,times(1)).findAllByUserId(any(String.class));
         assertNotNull(response);

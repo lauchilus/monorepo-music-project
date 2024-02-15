@@ -2,6 +2,7 @@ package com.lauchilus.microservice.post;
 
 import com.lauchilus.microservice.kafka.producer.PayloadPostTopic;
 import com.lauchilus.microservice.post.dto.CreateDto;
+import com.lauchilus.microservice.post.dto.GetPostDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -24,13 +25,13 @@ public class PostController {
     }
 
     @GetMapping("/{postId}")
-    public ResponseEntity<Post> getPost(@PathVariable String postId){
-        return new ResponseEntity<Post>(service.getPost(postId),HttpStatus.OK);
+    public ResponseEntity<GetPostDto> getPost(@PathVariable String postId){
+        return new ResponseEntity<GetPostDto>(service.getPost(postId),HttpStatus.OK);
     }
 
     @GetMapping("/all/{userId}")
-    public ResponseEntity<List<Post>> getAllUserPosts(@PathVariable String userId){
-        return new ResponseEntity<List<Post>>(service.getAllPostFromUser(userId),HttpStatus.OK);
+    public ResponseEntity<List<GetPostDto>> getAllUserPosts(@PathVariable String userId){
+        return new ResponseEntity<List<GetPostDto>>(service.getAllPostFromUser(userId),HttpStatus.OK);
     }
 
     @DeleteMapping("/{postId}")

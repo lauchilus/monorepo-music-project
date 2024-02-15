@@ -79,4 +79,38 @@ public class SpotifyApiResponseParser {
         }
         return null;
     }
+
+    public SpotifyTrackInfo parseTrackById(String body) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            JsonNode trackNode = objectMapper.readTree(body);
+
+            String name = trackNode.path("name").asText();
+            String id = trackNode.path("id").asText();
+            String externalUrl = trackNode.path("external_urls").path("spotify").asText();
+            String previewUrl = trackNode.path("preview_url").asText();
+
+            // En este caso, asumimos que la imagen es la primera en la lista de imágenes del álbum
+            JsonNode albumNode = trackNode.path("album");
+            String imageUrl = albumNode.path("images").get(0).path("url").asText();
+            String albumName = albumNode.path("name").asText();
+
+            JsonNode artistsNode = trackNode.path("artists");
+            String artistName = "";
+            if (artistsNode.isArray() && artistsNode.size() > 0) {
+                JsonNode firstArtistNode = artistsNode.get(0);
+                artistName = firstArtistNode.path("name").asText();
+            }
+
+
+            SpotifyTrackInfo trackDetails = new SpotifyTrackInfo(name,id,externalUrl,previewUrl,imageUrl,artistName);
+
+            return trackDetails;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
+
+

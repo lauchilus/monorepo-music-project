@@ -2,10 +2,7 @@ package com.lauchilus.microservice.search.spotifyApi;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.hc.core5.http.ParseException;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import se.michaelthelin.spotify.SpotifyApi;
@@ -42,6 +39,21 @@ public class SpotifyService {
                 new HttpEntity<>(headers),  // Añadir los headers a la solicitud
                 String.class);
         List<SpotifyTrackInfo> res = responseParser.parseTracks(response.getBody());
+        System.out.println(response.getBody());
+        return res;
+    }
+
+    public SpotifyTrackInfo getTrackInfo(String id) {
+        String q = String.format("https://api.spotify.com/v1/tracks/%s",id);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + spotifyApi.getAccessToken());
+
+        ResponseEntity<String> response = restTemplate.exchange(
+                q,
+                HttpMethod.GET,
+                new HttpEntity<>(headers),  // Añadir los headers a la solicitud
+                String.class);
+        SpotifyTrackInfo res = responseParser.parseTrackById(response.getBody());
         System.out.println(response.getBody());
         return res;
     }
