@@ -25,14 +25,14 @@ public class CommentService {
     public ResponseComments addComment(AddCommentDto commentDto){
         Post post = postRepository.findByPostId(commentDto.postId());
         if(postRepository.existsByPostId(post.getId())) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        Comment comment = Comment.builder()
+        Comment comment = commentRepository.insert(Comment.builder()
                 .userId(commentDto.userId())
                 .post(post)
                 .text(commentDto.text())
-                .build();
-        commentRepository.insert(comment);
+                .build());
         producer.SendNotificationComment(post.getUserId(),"New comment", "You have a new comment in your post", comment.getUserId(),"comment");
-        return new ResponseComments(comment.getId(),comment.getPost().getId(),comment.getText(), comment.getUserId());
+        ResponseComments response =new ResponseComments(comment.getId(),comment.getPost().getId(),comment.getText(), comment.getUserId());
+        return response;
     }
 
     public List<ResponseComments> getAllPostComments(String postId){

@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Document
+@Data
 public class Post {
 
     @Id
