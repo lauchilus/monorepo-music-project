@@ -14,7 +14,7 @@ public class FollowerService {
     private final Producer producer;
 
     public void follow(String follower, String followee) {
-        repository.insert(Follower.builder()
+        Follower f =repository.insert(Follower.builder()
                 .follower(follower)
                 .followee(followee)
                 .build());
