@@ -19,7 +19,7 @@ import java.util.List;
 public class SpotifyService {
 
     private final SpotifyApiResponseParser responseParser;
-    private final SpotifyApi spotifyApi;
+    private final SpotifyConfiguration spotifyApi;
     private static final String searchUrl = "https://api.spotify.com/v1/search?q=luis+miguel&type=track%2Cartist";
 
     private final RestTemplate restTemplate;
@@ -28,7 +28,7 @@ public class SpotifyService {
     public List<SpotifyTrackInfo> getTrack(String query,String limit,String offset) throws IOException, ParseException, SpotifyWebApiException {
         String q = String.format("https://api.spotify.com/v1/search?q=%s&type=track,artist&limit=%s&offset=%s",query,limit,offset);
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + spotifyApi.getAccessToken());
+        headers.set("Authorization", "Bearer " + spotifyApi.getSpotifyApi().getAccessToken());
 
         //SearchItemRequest sir = spotifyApi.searchItem(query, type).build();
         //final SearchResult searchResult = sir.execute();
@@ -46,7 +46,7 @@ public class SpotifyService {
     public SpotifyTrackInfo getTrackInfo(String id) {
         String q = String.format("https://api.spotify.com/v1/tracks/%s",id);
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + spotifyApi.getAccessToken());
+        headers.set("Authorization", "Bearer " + spotifyApi.getSpotifyApi().getAccessToken());
 
         ResponseEntity<String> response = restTemplate.exchange(
                 q,
