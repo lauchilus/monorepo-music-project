@@ -1,5 +1,5 @@
 spring:
   application:
-    name: search
+    name: users
   config:
     import: optional:configserver:http://localhost:8888

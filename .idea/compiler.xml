@@ -13,8 +13,9 @@
         <module name="posts-microservice" />
         <module name="search-microservice" />
         <module name="gateway" />
-        <module name="base-microservice-mongo" />
         <module name="notifications" />
+        <module name="user-microservice" />
+        <module name="base-microservice-mongo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -38,6 +39,7 @@
       <module name="notifications" options="-parameters" />
       <module name="posts-microservice" options="-parameters" />
       <module name="search-microservice" options="-parameters" />
+      <module name="user-microservice" options="-parameters" />
     </option>
   </component>
 </project>

@@ -25,11 +25,11 @@ public class PostService {
     private String trackUrl = "http://localhost:8094/api/v1/search/details?id=";
 
     @Transactional
-    public Post createPost(CreateDto create){
+    public Post createPost(CreateDto create,String uid){
         Post post = postRepository.save(Post.builder()
                 .songId(create.songId())
                 .description(create.description())
-                .userId(create.userId())
+                .userId(uid)
                 .likes(0L)
                 .likesList(new ArrayList<>())
                 .build());

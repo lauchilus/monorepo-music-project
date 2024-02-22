@@ -42,7 +42,8 @@ class PostServiceTest {
 
     @Test
     public void createPost__shouldReturnPost() {
-        CreateDto create = new CreateDto("testUserID","Descrition","25ypHCQpDX2nrDFly7eZLZ");
+        CreateDto create = new CreateDto("Descrition","25ypHCQpDX2nrDFly7eZLZ");
+        String uid = "testUid";
 
         Post post = getPostMock();
 
@@ -53,7 +54,7 @@ class PostServiceTest {
         when(postRepository.save(any(Post.class))).thenReturn(post);
         Mockito.doNothing().when(postProducer).sendMessage(payload);
 
-        Post response = postService.createPost(create);
+        Post response = postService.createPost(create,uid);
 
         verify(postRepository,times(1)).save(any(Post.class));
         verify(postProducer,times(1)).sendMessage(any(PayloadPostTopic.class));

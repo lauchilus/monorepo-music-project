@@ -20,8 +20,8 @@ public class PostController {
     private final PostService service;
 
     @PostMapping
-    public ResponseEntity<Post> createPost(@RequestBody CreateDto dto){
-        return new ResponseEntity<Post>(service.createPost(dto), HttpStatus.CREATED);
+    public ResponseEntity<Post> createPost(@RequestBody CreateDto dto,@RequestHeader("uid") String uid){
+        return new ResponseEntity<Post>(service.createPost(dto,uid), HttpStatus.CREATED);
     }
 
     @GetMapping("/{postId}")
